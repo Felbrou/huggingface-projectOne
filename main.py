@@ -9,15 +9,17 @@ client = OpenAI(
     api_key=os.environ["HF_TOKEN"],
 )
 
+topic = input("🎨 Enter a poem topic: ")
 
 completion = client.chat.completions.create(
     model="moonshotai/Kimi-K2-Instruct-0905",
     messages=[
         {
             "role": "user",
-            "content": "Generate a poem about the sea."
+            "content": f"Generate a poem about: {topic}."
         }
     ],
 )
 
-print(completion.choices[0].message)
+print("\n📜 Your Poem:\n")
+print(completion.choices[0].message.content)
